@@ -1,33 +1,59 @@
-var Card =React.createClass({
-  getInitialState: function() {
-    return{};
-  },
-  componentDidMount: function() {
-    var component = this;
-    $.get("https://api.github.com/users/" + this.props.login, function(data){
-      component.setState(data);
-    });
-  },
+// Code goes here
+var StarsFrame = React.createClass({
   render: function() {
-    return(
-      <div>
-        <img src={this.state.avatar_url} width="80"/>
-        <h3>{this.state.name}</h3>
-        <hr/>
+    return (
+      <div id="stars-frame">
+        <div className="well">
+          <span className="glyphicon glyphicon-star"></span>
+          <span className="glyphicon glyphicon-star"></span>
+          <span className="glyphicon glyphicon-star"></span>
+          <span className="glyphicon glyphicon-star"></span>
+          <span className="glyphicon glyphicon-star"></span>
+        </div>
       </div>
     );
   }
 });
 
-var Main = React.createClass({
+var ButtonFrame = React.createClass({
   render: function() {
-    return(
-      <div>
-        <Card login="andela-jngatia" />
-        <Card login="CarolHsu" />
+    return (
+      <div id="button-frame">
+        <button className="btn btn-primary btn-lg">=</button>
       </div>
-    )
+    );
   }
-})
+});
 
-React.render( < Main / > , document.getElementById("root"));
+var AnswerFrame = React.createClass({
+  render: function() {
+    return (
+      <div id="answer-frame">
+        <div className="well">
+          ...
+        </div>
+      </div>
+    );
+  }
+});
+
+var Game = React.createClass({
+  render: function(){
+    return (
+      <div>
+        <h2> Play Nine</h2>
+        <hr />
+        <div className="clearfix">
+          <StarsFrame />
+          <ButtonFrame />
+          <AnswerFrame />
+        </div>
+      </div>
+    );
+  }
+});
+
+React.render(
+  <Game />,
+  document.getElementById('root')
+);
